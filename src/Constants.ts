@@ -1,5 +1,6 @@
 export const DatabaseToken = Symbol("Database");
 export const ClientToken = Symbol("Client");
+export const CommandsToken = Symbol("Commands");
 export enum COLORS {
     NORMAL = "#5865F2",
     DANGER = "#ED4245",

@@ -1,32 +1,29 @@
 import { inject, injectable } from "tsyringe";
-import { Client, MessageEmbed } from "discord.js";
-import { SlashCommand, SlashCreator, CommandContext } from "slash-create";
-import logger from "../../logger";
-import { ClientToken } from "../../Constants";
+import { Client, MessageEmbed, CommandInteraction } from "discord.js";
+import { ClientToken, COLORS } from "../../Constants";
+import BaseCommand from "../../utils/BaseCommand";
 
 @injectable()
-export default class extends SlashCommand {
-    constructor(public creator: SlashCreator, @inject(ClientToken) public client: Client) {
-        super(creator, {
-            name: "ping",
-            description: "Ping Pong?"
+export default class extends BaseCommand {
+    constructor(@inject(ClientToken) public client: Client) {
+        super({
+            name: "ping"
         });
     }
 
-    onError(err: Error) {
-        logger.error(err.message, err.stack);
-    }
+    async execute(interaction: CommandInteraction) {
+        await interaction.deferReply({
+            ephemeral: interaction.options.getBoolean("hidden")
+        });
 
-    async run(ctx: CommandContext) {
-        await ctx.defer();
-        const timeout = Date.now() - ctx.invokedAt;
+        const timeout = Date.now() - interaction.createdTimestamp;
         const embed = new MessageEmbed()
             .setTimestamp()
-            .setTitle("Ping - Pong")
-            .setColor("RANDOM")
+            .setTitle("Bot Latency")
+            .setColor(COLORS.NORMAL)
             .setThumbnail(this.client.user.displayAvatarURL())
             .setDescription(`⏱️ | Pong! Took \`${timeout}ms\``);
 
-        return await ctx.sendFollowUp({ embeds: [embed.toJSON()] });
+        await interaction.followUp({ embeds: [embed] });
     }
 }
