@@ -1,11 +1,9 @@
-import { inject, injectable } from "tsyringe";
-import { Client, MessageEmbed, ContextMenuInteraction } from "discord.js";
-import { ClientToken, COLORS } from "../../../../Constants";
+import { MessageEmbed, ContextMenuInteraction } from "discord.js";
+import { COLORS } from "../../../../Constants";
 import BaseCommand from "../../../../utils/BaseCommand";
 
-@injectable()
 export default class extends BaseCommand {
-    constructor(@inject(ClientToken) public client: Client) {
+    constructor() {
         super({
             name: "Count Characters"
         });

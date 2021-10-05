@@ -1,6 +1,7 @@
 import { Collection, Constants, Interaction } from "discord.js";
 import { inject, injectable } from "tsyringe";
 import { COLORS, CommandsToken } from "../Constants";
+import logger from "../logger";
 import BaseCommand from "../utils/BaseCommand";
 import BaseEvent from "../utils/BaseEvent";
 
@@ -20,7 +21,8 @@ export default class extends BaseEvent {
                 if (command) return await command.execute(interaction);
             } catch (err) {
                 const error = err as Error;
-                if (!interaction.replied)
+                logger.error(`[${interaction.commandName}] Command execution error:\n${error.stack || error}`);
+                if (!interaction.replied && !interaction.deferred)
                     return await interaction.reply({
                         content: "Oh no! Something went wrong while executing this command:",
                         embeds: [
@@ -38,7 +40,7 @@ export default class extends BaseEvent {
                     });
             }
 
-            if (!interaction.replied)
+            if (!interaction.replied && !interaction.deferred)
                 return await interaction.reply({
                     content: "Oh no! Looks like something is not right here!",
                     ephemeral: true
