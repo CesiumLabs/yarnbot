@@ -25,7 +25,7 @@ export default async function DeployCommands() {
         logger.info("Successfully read application [/] commands data.");
         logger.info("Started refreshing application [/] commands.");
 
-        await rest.put(Routes.applicationCommands(process.env.DISCORD_ID), {
+        await rest.put(Routes.applicationGuildCommands(process.env.DISCORD_ID, process.env.GUILD_ID), {
             body: commands
         });
 
