@@ -19,6 +19,7 @@ export default class extends SlashCommand {
     }
 
     async run(ctx: CommandContext) {
+        // TODO: fix this
         await ctx.defer();
         const res = await YarnBotUtils.prompt(this.client.channels.resolve(ctx.channelID) as TextChannel, "Do you want to confirm this?", ctx.user.id);
         return;
