@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": false,
+        "outDir": "./dist",
+        "strict": true,
+        "pretty": true,
+        "removeComments": true,
+        "strictNullChecks": false,
+        "resolveJsonModule": false,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "jsxFactory": "DiscordComponents.createComponent",
+        "jsx": "react",
+        "jsxFragmentFactory": "DiscordComponents.fragment"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
