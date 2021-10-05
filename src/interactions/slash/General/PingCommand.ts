@@ -1,4 +1,5 @@
 import { ApplicationCommandData } from "discord.js";
+import { ApplicationCommandOptionTypes } from "discord.js/typings/enums.js";
 
 export = {
     name: "ping",
@@ -7,7 +8,7 @@ export = {
         {
             name: "hidden",
             required: false,
-            type: "BOOLEAN",
+            type: ApplicationCommandOptionTypes.BOOLEAN,
             description: "Creates hidden response"
         }
     ]

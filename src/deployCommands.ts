@@ -4,11 +4,11 @@ import { ApplicationCommandData } from "discord.js/typings/index.js";
 import readdirp from "readdirp";
 import logger from "./logger";
 
-const rest = new REST({
-    version: "9"
-}).setToken(process.env.DISCORD_TOKEN);
-
 export default async function DeployCommands() {
+    const rest = new REST({
+        version: "9"
+    }).setToken(process.env.DISCORD_TOKEN);
+
     try {
         logger.info("Reading application [/] commands data.");
 
