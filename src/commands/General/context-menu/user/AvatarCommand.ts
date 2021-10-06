@@ -10,10 +10,6 @@ export default class extends BaseCommand {
     }
 
     async execute(interaction: ContextMenuInteraction) {
-        await interaction.deferReply({
-            ephemeral: true
-        });
-
         const user = interaction.options.getUser("user");
         const avatars = (["gif", "jpeg", "png", "webp"] as DynamicImageFormat[]).map((m) => {
             return [m.toUpperCase(), user.displayAvatarURL({ format: m, size: 4096 })];
@@ -27,6 +23,6 @@ export default class extends BaseCommand {
             .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
             .setDescription(avatars.map(([m, n]) => `[${m}](${n})`).join(" | "));
 
-        await interaction.followUp({ embeds: [embed] });
+        await interaction.followUp({ embeds: [embed], ephemeral: true });
     }
 }

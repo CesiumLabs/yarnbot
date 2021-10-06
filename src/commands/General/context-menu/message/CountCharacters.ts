@@ -10,10 +10,6 @@ export default class extends BaseCommand {
     }
 
     async execute(interaction: ContextMenuInteraction) {
-        await interaction.deferReply({
-            ephemeral: true
-        });
-
         const message = interaction.options.getMessage("message");
         const count = message.content?.length ?? 0;
 
@@ -25,6 +21,6 @@ export default class extends BaseCommand {
             .setDescription(message.content || "**No content available!**")
             .setFooter(`Total ${count} character${count === 1 ? "" : "s"}`);
 
-        await interaction.followUp({ embeds: [embed] });
+        await interaction.followUp({ embeds: [embed], ephemeral: true });
     }
 }

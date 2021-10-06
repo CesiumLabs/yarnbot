@@ -2,16 +2,23 @@ import { Sequelize, DataTypes } from "sequelize";
 
 export default (sequelize: Sequelize) => {
     return sequelize.define(
-        "Guild",
+        "AntiSpam",
         {
-            id: {
+            guild: {
                 type: DataTypes.STRING,
-                allowNull: false,
-                primaryKey: true
+                allowNull: false
             },
-            blacklisted: {
+            spamBlock: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
+            },
+            spamBlockMute: {
+                type: DataTypes.NUMBER,
+                defaultValue: 5
+            },
+            spamBlockBan: {
+                type: DataTypes.NUMBER,
+                defaultValue: 6
             }
         },
         {
