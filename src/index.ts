@@ -1,8 +1,7 @@
 import "reflect-metadata";
 import { config } from "dotenv";
 import { container } from "tsyringe";
-import Database from "./database/db";
-import { DatabaseToken, ClientToken, CommandsToken } from "./Constants";
+import { symClient, symCommands } from "./Constants";
 import { Client, Collection, Intents } from "discord.js";
 import readdirp from "readdirp";
 import logger from "./logger";
@@ -11,15 +10,13 @@ import BaseCommand from "./utils/BaseCommand";
 import BaseEvent from "./utils/BaseEvent";
 
 config();
-const db = new Database();
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES]
 });
 const commandsCache = new Collection<string, BaseCommand>();
 
-container.register(ClientToken, { useValue: client });
-container.register(DatabaseToken, { useValue: db });
-container.register(CommandsToken, { useValue: commandsCache });
+container.register(symClient, { useValue: client });
+container.register(symCommands, { useValue: commandsCache });
 
 const commands = readdirp(`${__dirname}/commands`, {
     fileFilter: ["*.js"],

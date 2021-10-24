@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
 import { Client, MessageEmbed, CommandInteraction } from "discord.js";
-import { ClientToken, COLORS } from "../../Constants";
+import { symClient, COLORS } from "../../Constants";
 import BaseCommand from "../../utils/BaseCommand";
 
 @injectable()
 export default class extends BaseCommand {
-    constructor(@inject(ClientToken) public client: Client) {
+    constructor(@inject(symClient) public client: Client) {
         super({
             name: "ping"
         });

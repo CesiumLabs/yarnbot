@@ -1,13 +1,13 @@
 import { Collection, CommandInteraction, Constants, Interaction } from "discord.js";
 import { inject, injectable } from "tsyringe";
-import { COLORS, CommandsToken } from "../Constants";
+import { COLORS, symCommands } from "../Constants";
 import logger from "../logger";
 import BaseCommand from "../utils/BaseCommand";
 import BaseEvent from "../utils/BaseEvent";
 
 @injectable()
 export default class extends BaseEvent {
-    constructor(@inject(CommandsToken) public commands: Collection<string, BaseCommand>) {
+    constructor(@inject(symCommands) public commands: Collection<string, BaseCommand>) {
         super({
             name: Constants.Events.INTERACTION_CREATE
         });

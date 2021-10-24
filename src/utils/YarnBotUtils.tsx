@@ -5,12 +5,12 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { DiscordComponents, MessageActionRow, MessageButton } from "discord.tsx";
 import { injectable, inject, container } from "tsyringe";
-import { ClientToken } from "../Constants";
+import { symClient } from "../Constants";
 import { randomBytes } from "node:crypto";
 
 @injectable()
 class YarnBotUtils {
-    constructor(@inject(ClientToken) public client: Client) {}
+    constructor(@inject(symClient) public client: Client) {}
 
     getRandomId(msg = "") {
         return `${msg || ""}_${randomBytes(4).toString("hex")}`;
