@@ -1,12 +1,9 @@
-import { inject, injectable } from "tsyringe";
 import { Client, MessageEmbed, CommandInteraction } from "discord.js";
-import { symClient } from "../../Constants";
 import BaseCommand from "../../utils/BaseCommand";
 import { Doc, Library } from "snowflake-studio-docs";
 
-@injectable()
 export default class extends BaseCommand {
-    constructor(@inject(symClient) public client: Client) {
+    constructor() {
         super({
             name: "docs"
         });
