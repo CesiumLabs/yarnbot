@@ -1,0 +1,18 @@
+{
+	"model": {
+		"prefix": "yb-",
+		"body": [
+			"import { model, Schema, SchemaTypes } from \"mongoose\";",
+			"import {} from \"../interfaces\";",
+			"",
+			"const DemoModel = new Schema({",
+			"\t",
+			"}, {",
+			"\ttimestamps: true",
+			"});",
+			"",
+			"export default model(\"DemoModel\", DemoModel);"
+		],
+		"description": "Generate mongoose model"
+	}
+}
